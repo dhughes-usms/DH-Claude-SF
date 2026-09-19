@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USMS KPI YTD Update</title>
+<meta name="description" content="U.S. Masters Swimming Board KPI Scorecard — year-to-date update through June 2026 (Q2) with prior-year comparisons.">
+<style>
+  :root{
+    --navy:#002855; --navy-2:#013a70; --ink:#1a1a2e; --paper:#ffffff;
+    --bg:#f4f6f8; --line:#e2e6ea; --muted:#666; --soft:#f8f9fa;
+    --green-bg:#d4edda; --green-fg:#155724; --green-dot:#28a745;
+    --yellow-bg:#fff3cd; --yellow-fg:#856404; --yellow-dot:#ffc107;
+    --red-bg:#f8d7da; --red-fg:#721c24; --red-dot:#dc3545;
+    --pre-bg:#e8eaf0; --pre-fg:#3c3f58; --pre-dot:#adb5bd;
+    --mission:#1a6e3c;
+    --up:#1a7a34; --down:#c62828;
+  }
+  :root:not([data-theme="light"]) { }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e1116; --paper:#161b22; --ink:#e6edf3; --line:#2a313c; --muted:#9aa5b1; --soft:#1b2129;
+      --green-bg:#123122; --green-fg:#7ee2a8; --yellow-bg:#3a3210; --yellow-fg:#f2d98a;
+      --red-bg:#3a1519; --red-fg:#f4a9b0; --pre-bg:#22283180; --pre-fg:#c3cad6;
+      --up:#5fd08a; --down:#f4808a;
+    }
+  }
+  :root[data-theme="dark"]{
+      --bg:#0e1116; --paper:#161b22; --ink:#e6edf3; --line:#2a313c; --muted:#9aa5b1; --soft:#1b2129;
+      --green-bg:#123122; --green-fg:#7ee2a8; --yellow-bg:#3a3210; --yellow-fg:#f2d98a;
+      --red-bg:#3a1519; --red-fg:#f4a9b0; --pre-bg:#22283180; --pre-fg:#c3cad6;
+      --up:#5fd08a; --down:#f4808a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);padding:24px;font-size:13px;line-height:1.45}
+  .page{max-width:1120px;margin:0 auto;background:var(--paper);border-radius:10px;box-shadow:0 2px 16px rgba(0,0,0,0.10);overflow:hidden}
+  .header{background:var(--navy);color:#fff;padding:22px 32px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+  .header-left h1{font-size:20px;font-weight:700;letter-spacing:.3px;margin-bottom:3px}
+  .header-left p{font-size:12px;opacity:.78}
+  .header-right{text-align:right;font-size:11px;opacity:.8;line-height:1.6}
+  .header-right strong{font-size:13px;opacity:1;display:block;color:#A8C8E8;font-weight:600}
+  .legend-bar{background:var(--navy);border-top:1px solid rgba(255,255,255,.12);padding:8px 32px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  .legend-bar>span:first-child{color:rgba(255,255,255,.7);font-size:11px}
+  .badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;letter-spacing:.3px}
+  .badge-green{background:var(--green-bg);color:var(--green-fg)}
+  .badge-yellow{background:var(--yellow-bg);color:var(--yellow-fg)}
+  .badge-red{background:var(--red-bg);color:var(--red-fg)}
+  .badge-pre{background:var(--pre-bg);color:var(--pre-fg)}
+
+  /* Financial summary strip */
+  .fin-strip{padding:16px 28px 4px}
+  .fin-strip h3{font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.7px;margin:0 4px 10px}
+  :root:not([data-theme="light"]) .fin-strip h3, :root[data-theme="dark"] .fin-strip h3{color:#A8C8E8}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .fin-strip h3{color:#A8C8E8}}
+  .fin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .fin-card{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--paper)}
+  .fin-label{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+  .fin-value{font-size:21px;font-weight:800;color:var(--navy);line-height:1.05;margin-top:4px}
+  :root:not([data-theme="light"]) .fin-value{color:var(--ink)}
+  .fin-yoy{font-size:11px;margin-top:3px;font-weight:600}
+  .fin-sub{font-size:10px;color:var(--muted);margin-top:4px;line-height:1.35}
+  .up{color:var(--up)} .down{color:var(--down)}
+
+  .section-header{display:flex;align-items:center;gap:10px;padding:16px 32px 8px;border-top:3px solid var(--navy);margin-top:8px}
+  .section-header.mission{border-top-color:var(--mission)}
+  .section-icon{width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+  .section-icon.mission{background:var(--mission)}
+  .section-header h2{font-size:13px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.8px}
+  :root:not([data-theme="light"]) .section-header h2{color:#A8C8E8}
+  .section-header.mission h2{color:var(--mission)}
+  :root:not([data-theme="light"]) .section-header.mission h2{color:#5fce8b}
+  .section-header p{font-size:11px;color:var(--muted);margin-top:1px}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:8px 28px 20px}
+  .kpi-card{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+  .kpi-card-header{padding:10px 12px 8px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .kpi-id{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+  .kpi-name{font-size:12px;font-weight:700;color:var(--ink);line-height:1.3}
+  .kpi-body{padding:10px 12px;flex:1;display:flex;flex-direction:column;gap:7px}
+  .kpi-value{font-size:22px;font-weight:800;color:var(--navy);line-height:1}
+  :root:not([data-theme="light"]) .kpi-value{color:var(--ink)}
+  .kpi-value-sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .kpi-yoy{font-size:11px;font-weight:700;margin-top:2px}
+  .kpi-target{font-size:10.5px;color:var(--muted);background:var(--soft);padding:5px 8px;border-radius:5px;border-left:3px solid var(--line);line-height:1.4}
+  .kpi-target strong{color:var(--ink)}
+  .kpi-note{font-size:10px;color:var(--muted);font-style:italic;line-height:1.4}
+  .kpi-card-footer{padding:6px 12px 8px;display:flex;align-items:center;gap:6px;border-top:1px solid var(--line)}
+  .status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .dot-green{background:var(--green-dot)} .dot-yellow{background:var(--yellow-dot)} .dot-red{background:var(--red-dot)} .dot-pre{background:var(--pre-dot)}
+  .status-label{font-size:10.5px;font-weight:600;color:var(--ink)}
+  .as-of{margin-left:auto;font-size:9.5px;color:var(--muted)}
+
+  .summary-bar{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 32px;display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  .summary-bar .lbl{font-size:11px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.5px}
+  .footer{padding:12px 32px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  .footer-left{font-size:10px;color:var(--muted);line-height:1.6}
+  .footer-right{font-size:10px;color:var(--muted);text-align:right;line-height:1.6}
+
+  @media (max-width:820px){
+    body{padding:12px}
+    .fin-grid{grid-template-columns:repeat(2,1fr)}
+    .kpi-grid{grid-template-columns:1fr;padding:8px 16px 18px}
+    .header,.legend-bar,.section-header,.summary-bar,.footer,.fin-strip{padding-left:16px;padding-right:16px}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>U.S. Masters Swimming — Board KPI Scorecard</h1>
+      <p>10 KPIs · 6 Financial + 4 Mission · Year-to-date update with prior-year comparison</p>
+    </div>
+    <div class="header-right">
+      <strong>YTD through June 2026 (Q2)</strong>
+      Prepared September 2026<br>
+      Financials: June 2026 BOD report · Counts: Salesforce 2026 YTD
+    </div>
+  </div>
+
+  <div class="legend-bar">
+    <span>Status key:</span>
+    <span class="badge badge-green">● GREEN — On track</span>
+    <span class="badge badge-yellow">● YELLOW — Below target, within tolerance</span>
+    <span class="badge badge-red">● RED — Significantly off target</span>
+    <span class="badge badge-pre">● IN DESIGN / PRE-LAUNCH</span>
+  </div>
+
+  <!-- FINANCIAL YTD SUMMARY -->
+  <div class="fin-strip">
+    <h3>Consolidated P&amp;L — YTD through June 2026 vs. June 2025</h3>
+    <div class="fin-grid">
+      <div class="fin-card">
+        <div class="fin-label">Total Revenue</div>
+        <div class="fin-value">$3.83M</div>
+        <div class="fin-yoy up">▲ +$150K (+4.1%) vs. 2025</div>
+        <div class="fin-sub">2025 YTD $3.68M. Driven by membership dues (+$203K) &amp; College Club (+$22K).</div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-label">Total Expenses</div>
+        <div class="fin-value">$2.40M</div>
+        <div class="fin-yoy down">▲ +$276K (+13.0%) vs. 2025</div>
+        <div class="fin-sub">2025 YTD $2.12M. Comp +$148K and volunteer admin +$69K lead the increase.</div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-label">Net Op Income (pre-dep'n)</div>
+        <div class="fin-value">$1.43M</div>
+        <div class="fin-yoy down">▼ −$126K vs. 2025</div>
+        <div class="fin-sub">2025 YTD $1.56M. Seasonal H1 surplus — dues are front-loaded; nets down over the year.</div>
+      </div>
+      <div class="fin-card">
+        <div class="fin-label">Full-Year Net (forecast)</div>
+        <div class="fin-value" style="color:var(--down)">($553K)</div>
+        <div class="fin-yoy down">Q2 forecast, incl. dep'n</div>
+        <div class="fin-sub">vs. budget ($274K) and 2025 actual +$104K. Reserves $5.2M, well above $2.5M floor.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINANCIAL KPIs -->
+  <div class="section-header">
+    <div class="section-icon">$</div>
+    <div>
+      <h2>Financial KPIs — Can USMS Sustain Itself?</h2>
+      <p>Quantitative · From the June 2026 BOD financial report and Salesforce · Quarterly review</p>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+
+    <!-- F-1 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">F-1</div><div class="kpi-name">Total Paying Customer Base</div></div>
+        <span class="badge badge-green">GREEN</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value">~74,250 <span class="trend up">▲</span></div>
+          <div class="kpi-value-sub">2026 projected · 59,000 USMS · ~5,250 GUS · 10,000 CCS</div>
+          <div class="kpi-yoy up">▲ +6.4% YoY vs. 69,782 (2025)</div>
+        </div>
+        <div class="kpi-target"><strong>Target:</strong> ≥5% YoY growth &nbsp;|&nbsp; retention ≥70%</div>
+        <div class="kpi-note">USMS individual members ~57,600 (SF 2026 YTD) — roughly flat vs. 57,532; growth carried by GUS/CCS. Retention 69.9% (2025), just under the 70% target.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-green"></div><div class="status-label">Growth target met; retention near threshold</div>
+        <div class="as-of">SF 2026 YTD</div>
+      </div>
+    </div>
+
+    <!-- F-2 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">F-2</div><div class="kpi-name">Consolidated Cash Income</div></div>
+        <span class="badge badge-red">RED</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value" style="color:var(--down)">($553K)</div>
+          <div class="kpi-value-sub">Full-year forecast, incl. dep'n (Q2)</div>
+          <div class="kpi-yoy down">▼ vs. +$104K actual in 2025</div>
+        </div>
+        <div class="kpi-target"><strong>Target:</strong> break-even by 2030 &nbsp;|&nbsp; reserves floor ≥$2.5M</div>
+        <div class="kpi-note">H1 shows a seasonal surplus ($1.43M pre-dep'n) but the year is forecast to close in deficit — comp, volunteer admin, and $250K BOD-approved legal overage. Reserves $5.2M remain well above floor.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-red"></div><div class="status-label">Deficit forecast; reserves intact</div>
+        <div class="as-of">Q2 2026 forecast</div>
+      </div>
+    </div>
+
+    <!-- F-3 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">F-3</div><div class="kpi-name">Compensation as % of Revenue</div></div>
+        <span class="badge badge-yellow">YELLOW</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value">~47.8%</div>
+          <div class="kpi-value-sub">Full-year forecast ($2.39M / $5.01M)</div>
+          <div class="kpi-yoy down">▲ up from 41.3% in 2025</div>
+        </div>
+        <div class="kpi-target"><strong>Target:</strong> ≤50% (interim) &nbsp;|&nbsp; &lt;45% long-term</div>
+        <div class="kpi-note">YTD comp $1.18M is +14.4% vs. 2025. Within the interim ceiling but above the long-term target — headcount investment precedes new revenue streams (KN, Club Dev) ramping in 2027+.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-yellow"></div><div class="status-label">Within interim ceiling; trending up</div>
+        <div class="as-of">Q2 2026 forecast</div>
+      </div>
+    </div>
+
+    <!-- F-4 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">F-4</div><div class="kpi-name">Revenue Diversification Index</div></div>
+        <span class="badge badge-yellow">YELLOW</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value">~23%</div>
+          <div class="kpi-value-sub">Non-membership share of revenue (2026F)</div>
+          <div class="kpi-yoy down">▼ down from ~30% in 2024–25</div>
+        </div>
+        <div class="kpi-target"><strong>Target:</strong> ≥30% by 2030</div>
+        <div class="kpi-note">2024–25 sat near 30% on pandemic-era grant revenue, now fully sunset, revealing a true baseline of ~23%. YTD headwinds: advertising/partnership −$73K and events −$8K vs. 2025. Path back depends on KN, Bundles &amp; Club Dev royalties launching 2027.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-yellow"></div><div class="status-label">True baseline revealed; new streams 2027</div>
+        <div class="as-of">Q2 2026 forecast</div>
+      </div>
+    </div>
+
+    <!-- F-5 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">F-5</div><div class="kpi-name">Club Health Mix</div></div>
+        <span class="badge badge-yellow">YELLOW</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value">~1,250 clubs</div>
+          <div class="kpi-value-sub">Active clubs (Salesforce 2026)</div>
+          <div class="kpi-yoy" style="color:var(--muted)">◆ ~flat vs. 1,289 (2025)</div>
+        </div>
+        <div class="kpi-target"><strong>Target:</strong> small clubs &lt;20% by 2030 &nbsp;|&nbsp; avg &gt;50 members/club</div>
+        <div class="kpi-note">Small clubs (&lt;5 members) ~27% of total; avg ~47 members/club. Established/flagship clubs hold ~84% of all club-affiliated members. Partner Club program launches Jan 2027.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-yellow"></div><div class="status-label">Small-club share elevated; partner program 2027</div>
+        <div class="as-of">SF May 2026</div>
+      </div>
+    </div>
+
+    <!-- F-6 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">F-6</div><div class="kpi-name">Strategic Initiative Performance</div></div>
+        <span class="badge badge-pre">PRE-LAUNCH</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value" style="font-size:16px;color:var(--muted)">Implementation<br>Planning</div>
+        </div>
+        <div class="kpi-target">
+          <strong>Club Development:</strong> 5 clubs / 140 members by end of 2027<br>
+          <strong>Knowledge Network:</strong> revenue ramp begins 2027<br>
+          <strong>Regional Relays / Bundles:</strong> $35K / $21K Year 1
+        </div>
+        <div class="kpi-note">All programs in active planning for a Jan 2027 launch; Board-approved capital deployment on track. Formal milestone tracking begins Q1 2027.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-pre"></div><div class="status-label">Launch Jan 2027 — planning on track</div>
+        <div class="as-of">2026 planning</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MISSION KPIs -->
+  <div class="section-header mission">
+    <div class="section-icon mission">◎</div>
+    <div>
+      <h2>Mission KPIs — Is USMS Doing What It Exists to Do?</h2>
+      <p>Qualitative + survey-based · Measured through NPS, census, and structured judgment</p>
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+
+    <!-- M-1 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">M-1</div><div class="kpi-name">Customer Experience — NPS</div></div>
+        <span class="badge badge-pre">IN DESIGN</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value" style="font-size:14px;color:var(--muted);font-style:italic">Survey launching Q3 2026</div>
+          <div class="kpi-value-sub" style="margin-top:4px">Proxy: retention 69.9% (2025) vs. 64.5% (2024) — directionally positive</div>
+        </div>
+        <div class="kpi-target"><strong>Target:</strong> NPS ≥40 per audience &nbsp;|&nbsp; no segment below 25</div>
+        <div class="kpi-note">Instrument in design; first formal score expected by year-end 2026. Retention improvement is a positive leading indicator.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-pre"></div><div class="status-label">Instrument design underway</div>
+        <div class="as-of">Target: Q3 2026</div>
+      </div>
+    </div>
+
+    <!-- M-2 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">M-2</div><div class="kpi-name">Network Capacity Health</div></div>
+        <span class="badge badge-pre">IN DESIGN</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value">1,454</div>
+          <div class="kpi-value-sub">Club-affiliated coaches (Salesforce 2026)</div>
+          <div class="kpi-value-sub" style="margin-top:2px">1,527 designated · 2,686 certified · 606 fully active</div>
+        </div>
+        <div class="kpi-target"><strong>Target:</strong> ≥95% committee fill &nbsp;|&nbsp; coach/admin NPS ≥50 &nbsp;|&nbsp; vol. retention ≥80%</div>
+        <div class="kpi-note">Volunteer census + coach NPS in design. 3,611 members self-identify as coaches without formal credentials — a large untapped pipeline.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-pre"></div><div class="status-label">Census &amp; survey design underway</div>
+        <div class="as-of">SF May 2026</div>
+      </div>
+    </div>
+
+    <!-- M-3 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">M-3</div><div class="kpi-name">Inclusivity &amp; Mission Reach</div></div>
+        <span class="badge badge-yellow">YELLOW</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value">3 audiences</div>
+          <div class="kpi-value-sub">at scale (&gt;1,000 customers): USMS ~57,600 · CCS ~9,700 · GUS</div>
+          <div class="kpi-yoy" style="color:var(--muted)">◆ unchanged vs. 2025 (3 of 5)</div>
+        </div>
+        <div class="kpi-target"><strong>Target:</strong> ≥5 audiences &gt;1,000 by 2030 &nbsp;|&nbsp; ≥60% US pop. within reach</div>
+        <div class="kpi-note">KN, Regional Relays, and Partner Clubs launch 2027 — each projected to exceed 1,000 customers, reaching 5+. Geographic &amp; demographic analysis in progress.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-yellow"></div><div class="status-label">3 of 5 audience target; +2 in 2027</div>
+        <div class="as-of">SF 2026 YTD</div>
+      </div>
+    </div>
+
+    <!-- M-4 -->
+    <div class="kpi-card">
+      <div class="kpi-card-header">
+        <div><div class="kpi-id">M-4</div><div class="kpi-name">Customer Activation &amp; Engagement</div></div>
+        <span class="badge badge-pre">IN DESIGN</span>
+      </div>
+      <div class="kpi-body">
+        <div>
+          <div class="kpi-value">~25–35%</div>
+          <div class="kpi-value-sub">USMS members in ≥1 sanctioned event (historical)</div>
+          <div class="kpi-value-sub" style="margin-top:2px">2025 mix: 70.2% renewals · 20.0% new · 9.8% returning</div>
+        </div>
+        <div class="kpi-target"><strong>Target:</strong> ≥60% USMS in ≥1 program/event/yr &nbsp;|&nbsp; ≥40% GUS return in 24 mo.</div>
+        <div class="kpi-note">Cross-system activation metric in definition (event registration + Salesforce + KN). Strong renewal mix signals engagement, but activation is not yet formally measured.</div>
+      </div>
+      <div class="kpi-card-footer">
+        <div class="status-dot dot-pre"></div><div class="status-label">Formal metric in design; renewal trend positive</div>
+        <div class="as-of">2025 full year</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary-bar">
+    <span class="lbl">Status summary</span>
+    <span class="badge badge-green">GREEN &nbsp;1</span>
+    <span class="badge badge-yellow">YELLOW &nbsp;4</span>
+    <span class="badge badge-red">RED &nbsp;1</span>
+    <span class="badge badge-pre">IN DESIGN / PRE-LAUNCH &nbsp;4</span>
+    <span style="margin-left:auto;font-size:10.5px;color:var(--muted);font-style:italic">GUS subsidiary data not yet consolidated into totals</span>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <strong>Data sources:</strong> USMS June 2026 BOD Executive Financial Report (YTD actuals vs. 2025) · Q2 2026 Master Worksheet (full-year forecast) · Salesforce (clubs, coaches, membership) · 2025 full-year actuals.<br>
+      Financial figures are consolidated, through June 30, 2026. Full-year figures are Q2 forecast unless noted.
+    </div>
+    <div class="footer-right">
+      Prepared for USMS Board of Directors<br>
+      Year-to-date update · September 2026<br>
+      DRAFT — FOR BOARD REVIEW
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
